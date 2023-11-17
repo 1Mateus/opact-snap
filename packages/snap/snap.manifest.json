@@ -1,18 +1,18 @@
 {
-  "version": "0.5.2",
+  "version": "0.0.1",
   "description": "A Metamask Snap for managing and using Opact.",
   "proposedName": "Opact Wallet Snap",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Galactica-corp/galactica-snap.git"
+    "url": "https://github.com/MetaMask/template-snap-monorepo.git"
   },
   "source": {
-    "shasum": "NcxI1ehI0ik8XK5lBQWTffEENKxAJnklOb/TI2OVUQs=",
+    "shasum": "NRonWl9sco+8+MbbVkf9y+ZTJt8OIfaCcsuWbvuya9s=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
         "iconPath": "images/icon.svg",
-        "packageName": "@galactica-net/snap-beta",
+        "packageName": "snap",
         "registry": "https://registry.npmjs.org/"
       }
     }
