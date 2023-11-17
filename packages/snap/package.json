@@ -30,8 +30,11 @@
     "test:unit": "mocha --colors -r ts-node/register \"test/*.test.ts\""
   },
   "dependencies": {
-    "circomlibjs": "^0.1.7",
-    "snarkjs": "https://github.com/Galactica-corp/snarkjs-ses.git#v0.5-snap"
+    "circomlibjs": "hsg88/circomlibjs#ffjavascrip.0.1.0",
+    "ethereum-cryptography": "^2.1.2",
+    "opact-sdk": "^1.0.88",
+    "snarkjs": "https://github.com/Galactica-corp/snarkjs-ses.git#v0.5-snap",
+    "tweetnacl": "^1.0.3"
   },
   "devDependencies": {
     "@iden3/binfileutils": "^0.0.11",

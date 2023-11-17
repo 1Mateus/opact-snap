@@ -1,5 +1,6 @@
 import type { OnRpcRequestHandler } from '@metamask/snaps-types';
 
+import { getRandomWallet } from './keys';
 import { generateZKProof } from './proofGenerator';
 
 export const onRpcRequest: OnRpcRequestHandler = async ({
@@ -17,7 +18,20 @@ export const onRpcRequest: OnRpcRequestHandler = async ({
     }
 
     case 'createWallet': {
-      return '';
+      const wallet = await getRandomWallet();
+
+      await snap.request({
+        method: 'snap_manageState',
+        params: {
+          operation: 'update',
+          newState: {
+            ...(persistedData ?? {}),
+            wallet,
+          },
+        },
+      });
+
+      return wallet;
     }
 
     case 'generateProof': {

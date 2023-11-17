@@ -65,9 +65,9 @@ export const sendHello = async () => {
     params: {
       snapId: defaultSnapOrigin,
       request: {
-        method: 'generateProof',
+        method: 'createWallet',
         params: {
-          prover: await getProver('/transaction.json'),
+          prover: await getProver('/provers/transaction.json'),
         },
       },
     },
