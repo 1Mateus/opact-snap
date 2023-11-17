@@ -2253,6 +2253,56 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@galactica-net/snap-beta@workspace:packages/snap":
+  version: 0.0.0-use.local
+  resolution: "@galactica-net/snap-beta@workspace:packages/snap"
+  dependencies:
+    "@iden3/binfileutils": ^0.0.11
+    "@lavamoat/allow-scripts": ^2.0.3
+    "@metamask/auto-changelog": ^3.1.0
+    "@metamask/eslint-config": ^11.1.0
+    "@metamask/eslint-config-jest": ^11.1.0
+    "@metamask/eslint-config-nodejs": ^11.1.0
+    "@metamask/eslint-config-typescript": ^11.1.0
+    "@metamask/providers": ^10.2.1
+    "@metamask/rpc-methods": ^0.32.2
+    "@metamask/snaps-cli": ^0.32.2
+    "@metamask/snaps-types": ^0.32.2
+    "@metamask/snaps-ui": ^0.32.2
+    "@metamask/utils": ^5.0.1
+    "@types/chai": ^4.3.4
+    "@types/chai-as-promised": ^7.1.5
+    "@types/mocha": ^10.0.1
+    "@types/sinon": ^10.0.13
+    "@types/sinon-chai": ^3.2.9
+    "@typescript-eslint/eslint-plugin": ^5.58.0
+    "@typescript-eslint/parser": ^5.58.0
+    buffer: ^6.0.3
+    chai: ^4.3.7
+    chai-as-promised: ^7.1.1
+    circomlibjs: ^0.1.7
+    eslint: ^8.38.0
+    eslint-config-prettier: ^8.1.0
+    eslint-plugin-import: ^2.26.0
+    eslint-plugin-jest: ^26.8.2
+    eslint-plugin-jsdoc: ^39.2.9
+    eslint-plugin-node: ^11.1.0
+    eslint-plugin-prettier: ^4.2.1
+    ffjavascript: ^0.2.56
+    js-sha3: ^0.8.0
+    mocha: ^10.2.0
+    prettier: ^2.2.1
+    prettier-plugin-packagejson: ^2.2.11
+    rimraf: ^5.0.0
+    sinon: ^15.0.1
+    sinon-chai: ^3.7.0
+    snarkjs: "https://github.com/Galactica-corp/snarkjs-ses.git#v0.5-snap"
+    ts-command-line-args: ^2.4.2
+    ts-node: ^10.9.1
+    typescript: ^5.0.4
+  languageName: unknown
+  linkType: soft
+
 "@gatsbyjs/parcel-namer-relative-to-cwd@npm:^1.10.0":
   version: 1.10.0
   resolution: "@gatsbyjs/parcel-namer-relative-to-cwd@npm:1.10.0"
@@ -6973,9 +7023,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"blake-hash@patch:blake-hash@npm:2.0.0#.yarn/patches/blake-hash-npm-2.0.0-c63b9a2c2d.patch::locator=opact-snap%40workspace%3A.":
+"blake-hash@patch:blake-hash@npm:2.0.0#.yarn/patches/blake-hash-npm-2.0.0-c63b9a2c2d.patch::locator=root%40workspace%3A.":
   version: 2.0.0
-  resolution: "blake-hash@patch:blake-hash@npm%3A2.0.0#.yarn/patches/blake-hash-npm-2.0.0-c63b9a2c2d.patch::version=2.0.0&hash=7a83fd&locator=opact-snap%40workspace%3A."
+  resolution: "blake-hash@patch:blake-hash@npm%3A2.0.0#.yarn/patches/blake-hash-npm-2.0.0-c63b9a2c2d.patch::version=2.0.0&hash=7a83fd&locator=root%40workspace%3A."
   dependencies:
     node-addon-api: ^3.0.0
     node-gyp: latest
@@ -7843,9 +7893,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"circomlibjs@patch:circomlibjs@npm:0.1.7#.yarn/patches/circomlibjs-npm-0.1.7-92fe3b3421.patch::locator=opact-snap%40workspace%3A.":
+"circomlibjs@patch:circomlibjs@npm:0.1.7#.yarn/patches/circomlibjs-npm-0.1.7-92fe3b3421.patch::locator=root%40workspace%3A.":
   version: 0.1.7
-  resolution: "circomlibjs@patch:circomlibjs@npm%3A0.1.7#.yarn/patches/circomlibjs-npm-0.1.7-92fe3b3421.patch::version=0.1.7&hash=a9fcbd&locator=opact-snap%40workspace%3A."
+  resolution: "circomlibjs@patch:circomlibjs@npm%3A0.1.7#.yarn/patches/circomlibjs-npm-0.1.7-92fe3b3421.patch::version=0.1.7&hash=a9fcbd&locator=root%40workspace%3A."
   dependencies:
     blake-hash: ^2.0.0
     blake2b: ^2.1.3
@@ -10915,9 +10965,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ffjavascript@patch:ffjavascript@npm:0.2.57#.yarn/patches/ffjavascript-npm-0.2.57-a4801c15bf.patch::locator=opact-snap%40workspace%3A.":
+"ffjavascript@patch:ffjavascript@npm:0.2.57#.yarn/patches/ffjavascript-npm-0.2.57-a4801c15bf.patch::locator=root%40workspace%3A.":
   version: 0.2.57
-  resolution: "ffjavascript@patch:ffjavascript@npm%3A0.2.57#.yarn/patches/ffjavascript-npm-0.2.57-a4801c15bf.patch::version=0.2.57&hash=06c6c6&locator=opact-snap%40workspace%3A."
+  resolution: "ffjavascript@patch:ffjavascript@npm%3A0.2.57#.yarn/patches/ffjavascript-npm-0.2.57-a4801c15bf.patch::version=0.2.57&hash=06c6c6&locator=root%40workspace%3A."
   dependencies:
     wasmbuilder: 0.0.16
     wasmcurves: 0.2.0
@@ -15656,30 +15706,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"opact-snap@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "opact-snap@workspace:."
-  dependencies:
-    "@metamask/eslint-config": ^11.1.0
-    "@metamask/eslint-config-jest": ^11.1.0
-    "@metamask/eslint-config-nodejs": ^11.1.0
-    "@metamask/eslint-config-typescript": ^11.1.0
-    "@typescript-eslint/eslint-plugin": ^5.58.0
-    "@typescript-eslint/parser": ^5.58.0
-    eslint: ^8.38.0
-    eslint-config-prettier: ^8.1.0
-    eslint-plugin-import: ^2.26.0
-    eslint-plugin-jest: ^26.8.2
-    eslint-plugin-jsdoc: ^39.2.9
-    eslint-plugin-node: ^11.1.0
-    eslint-plugin-prettier: ^4.2.1
-    hardhat: ^2.10.1
-    prettier: ^2.2.1
-    prettier-plugin-packagejson: ^2.2.18
-    typescript: ^5.0.4
-  languageName: unknown
-  linkType: soft
-
 "open@npm:^7.0.3":
   version: 7.4.2
   resolution: "open@npm:7.4.2"
@@ -17664,6 +17690,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"root@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "root@workspace:."
+  dependencies:
+    "@metamask/eslint-config": ^11.1.0
+    "@metamask/eslint-config-jest": ^11.1.0
+    "@metamask/eslint-config-nodejs": ^11.1.0
+    "@metamask/eslint-config-typescript": ^11.1.0
+    "@typescript-eslint/eslint-plugin": ^5.58.0
+    "@typescript-eslint/parser": ^5.58.0
+    eslint: ^8.38.0
+    eslint-config-prettier: ^8.1.0
+    eslint-plugin-import: ^2.26.0
+    eslint-plugin-jest: ^26.8.2
+    eslint-plugin-jsdoc: ^39.2.9
+    eslint-plugin-node: ^11.1.0
+    eslint-plugin-prettier: ^4.2.1
+    hardhat: ^2.10.1
+    prettier: ^2.2.1
+    prettier-plugin-packagejson: ^2.2.18
+    typescript: ^5.0.4
+  languageName: unknown
+  linkType: soft
+
 "run-applescript@npm:^5.0.0":
   version: 5.0.0
   resolution: "run-applescript@npm:5.0.0"
@@ -18265,56 +18315,6 @@ __metadata:
   checksum: 0a7a79900bbb36f8aaa922cf111702a3647ac6165736d5dc96d3ef367efc50465cac70c53cd172c382b022dac72ec91710608e5393de71f76d7142e6fd80e8a3
   languageName: node
   linkType: hard
-
-"snap@workspace:packages/snap":
-  version: 0.0.0-use.local
-  resolution: "snap@workspace:packages/snap"
-  dependencies:
-    "@iden3/binfileutils": ^0.0.11
-    "@lavamoat/allow-scripts": ^2.0.3
-    "@metamask/auto-changelog": ^3.1.0
-    "@metamask/eslint-config": ^11.1.0
-    "@metamask/eslint-config-jest": ^11.1.0
-    "@metamask/eslint-config-nodejs": ^11.1.0
-    "@metamask/eslint-config-typescript": ^11.1.0
-    "@metamask/providers": ^10.2.1
-    "@metamask/rpc-methods": ^0.32.2
-    "@metamask/snaps-cli": ^0.32.2
-    "@metamask/snaps-types": ^0.32.2
-    "@metamask/snaps-ui": ^0.32.2
-    "@metamask/utils": ^5.0.1
-    "@types/chai": ^4.3.4
-    "@types/chai-as-promised": ^7.1.5
-    "@types/mocha": ^10.0.1
-    "@types/sinon": ^10.0.13
-    "@types/sinon-chai": ^3.2.9
-    "@typescript-eslint/eslint-plugin": ^5.58.0
-    "@typescript-eslint/parser": ^5.58.0
-    buffer: ^6.0.3
-    chai: ^4.3.7
-    chai-as-promised: ^7.1.1
-    circomlibjs: ^0.1.7
-    eslint: ^8.38.0
-    eslint-config-prettier: ^8.1.0
-    eslint-plugin-import: ^2.26.0
-    eslint-plugin-jest: ^26.8.2
-    eslint-plugin-jsdoc: ^39.2.9
-    eslint-plugin-node: ^11.1.0
-    eslint-plugin-prettier: ^4.2.1
-    ffjavascript: ^0.2.56
-    js-sha3: ^0.8.0
-    mocha: ^10.2.0
-    prettier: ^2.2.1
-    prettier-plugin-packagejson: ^2.2.11
-    rimraf: ^5.0.0
-    sinon: ^15.0.1
-    sinon-chai: ^3.7.0
-    snarkjs: "https://github.com/Galactica-corp/snarkjs-ses.git#v0.5-snap"
-    ts-command-line-args: ^2.4.2
-    ts-node: ^10.9.1
-    typescript: ^5.0.4
-  languageName: unknown
-  linkType: soft
 
 "snarkjs@https://github.com/Galactica-corp/snarkjs-ses.git#v0.5-snap":
   version: 0.5.0
@@ -20045,9 +20045,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"web-worker@patch:web-worker@npm:1.2.0#.yarn/patches/web-worker-npm-1.2.0-ef71df710e.patch::locator=opact-snap%40workspace%3A.":
+"web-worker@patch:web-worker@npm:1.2.0#.yarn/patches/web-worker-npm-1.2.0-ef71df710e.patch::locator=root%40workspace%3A.":
   version: 1.2.0
-  resolution: "web-worker@patch:web-worker@npm%3A1.2.0#.yarn/patches/web-worker-npm-1.2.0-ef71df710e.patch::version=1.2.0&hash=603182&locator=opact-snap%40workspace%3A."
+  resolution: "web-worker@patch:web-worker@npm%3A1.2.0#.yarn/patches/web-worker-npm-1.2.0-ef71df710e.patch::version=1.2.0&hash=603182&locator=root%40workspace%3A."
   checksum: 7ef3ae20cddcb991ed767962d156d2889d34b354c62775bd091294fbc8905703ee1e342d1e7cb5b81ee16b52ee53e845c697f67a266f559b22f546054a7089a1
   languageName: node
   linkType: hard
