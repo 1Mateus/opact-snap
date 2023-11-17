@@ -4,7 +4,7 @@
 
 // SPDX-License-Identifier: BUSL-1.1
 import { text, heading, divider } from '@metamask/snaps-ui';
-import { Buffer } from 'buffer';
+// import { Buffer } from 'buffer';
 import { buildBn128, buildBls12381 } from 'ffjavascript';
 import { groth16 } from 'snarkjs';
 
