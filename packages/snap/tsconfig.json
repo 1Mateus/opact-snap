@@ -1,7 +1,8 @@
 {
   "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "baseUrl": "./"
-  },
-  "include": ["**/*.ts"]
+  "files": [
+    "../../node_modules/@metamask/snaps-types/dist/global.d.ts",
+    "types/index.d.ts"
+  ],
+  "include": ["src", "types", "test", "../snap-api/src/api/zkCertTypes.ts"]
 }

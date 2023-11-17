@@ -1,3 +1,6 @@
+/* eslint-disable jsdoc/require-jsdoc */
+/* eslint-disable jsdoc/require-returns */
+/* eslint-disable jsdoc/require-description */
 import type { MetaMaskInpageProvider } from '@metamask/providers';
 
 import { defaultSnapOrigin } from '../config';
@@ -56,12 +59,33 @@ export const getSnap = async (version?: string): Promise<Snap | undefined> => {
 /**
  * Invoke the "hello" method from the example snap.
  */
-
 export const sendHello = async () => {
-  await window.ethereum.request({
+  const res = await window.ethereum.request({
     method: 'wallet_invokeSnap',
-    params: { snapId: defaultSnapOrigin, request: { method: 'hello' } },
+    params: {
+      snapId: defaultSnapOrigin,
+      request: {
+        method: 'generateProof',
+        params: {
+          prover: await getProver('/transaction.json'),
+        },
+      },
+    },
   });
+
+  console.log('fucking res', res);
+
+  return res;
 };
+
+export async function getProver(path: string) {
+  const proverText = await fetch(path);
+
+  const parsedFile = JSON.parse(await proverText.text());
+
+  console.log('parsedFile', parsedFile)
+
+  return parsedFile;
+}
 
 export const isLocalSnap = (snapId: string) => snapId.startsWith('local:');

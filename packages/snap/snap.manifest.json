@@ -1,13 +1,13 @@
 {
-  "version": "0.1.0",
-  "description": "An example Snap written in TypeScript.",
-  "proposedName": "TypeScript Example",
+  "version": "0.0.1",
+  "description": "A Metamask Snap for managing and using Opact.",
+  "proposedName": "Opact Wallet Snap",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MetaMask/template-snap-monorepo.git"
+    "url": "https://github.com/Galactica-corp/galactica-snap.git"
   },
   "source": {
-    "shasum": "jD8E4o4QOJElmDkQFcIITLrcKyZiR81o+rOnEMGSvOY=",
+    "shasum": "6OWPtTvD0y2TuaC8kfi0E+ANyFm7ddQOUKaHyWJpxxY=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
@@ -18,11 +18,16 @@
     }
   },
   "initialPermissions": {
-    "snap_dialog": {},
     "endowment:rpc": {
       "dapps": true,
       "snaps": false
-    }
+    },
+    "endowment:ethereum-provider": {},
+    "endowment:webassembly": {},
+    "snap_notify": {},
+    "snap_dialog": {},
+    "snap_manageState": {},
+    "snap_getEntropy": {}
   },
   "manifestVersion": "0.1"
 }

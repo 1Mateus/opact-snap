@@ -3,7 +3,6 @@ dist/
 build/
 coverage/
 .cache/
-public/
 
 # Logs
 logs
@@ -68,6 +67,7 @@ node_modules/
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+.vscode
 
 # yarn v2
 .yarn/cache
@@ -75,3 +75,6 @@ node_modules/
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+.local-pack
+.turbo
