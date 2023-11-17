@@ -3555,7 +3555,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@metamask/utils@npm:^8.0.0, @metamask/utils@npm:^8.1.0, @metamask/utils@npm:^8.2.0":
+"@metamask/utils@npm:^8.0.0, @metamask/utils@npm:^8.1.0, @metamask/utils@npm:^8.2.0, @metamask/utils@npm:^8.2.1":
   version: 8.2.1
   resolution: "@metamask/utils@npm:8.2.1"
   dependencies:
@@ -18932,7 +18932,7 @@ __metadata:
     "@metamask/snaps-cli": ^0.32.2
     "@metamask/snaps-types": ^0.32.2
     "@metamask/snaps-ui": ^0.32.2
-    "@metamask/utils": ^5.0.1
+    "@metamask/utils": ^8.2.1
     "@types/chai": ^4.3.4
     "@types/chai-as-promised": ^7.1.5
     "@types/mocha": ^10.0.1
