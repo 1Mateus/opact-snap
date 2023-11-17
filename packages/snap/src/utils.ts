@@ -1,15 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-// SPDX-License-Identifier: BUSL-1.1
-/**
- * Shortens an EVM address to the form 0x123..456 (better for size limited logs).
- *
- * @param addr - Full EVM address.
- * @returns Shortened address.
- */
-export function shortenAddrStr(addr: string): string {
-  return `${addr.slice(0, 5)}..${addr.slice(-3)}`;
-}
-
 /* tslint:disable */
 export const proofInputMock = {
   root: 6527188994441314969255312706065345593259395337463538770811940190994623223448n,
