@@ -34,7 +34,7 @@ export const getWalletFromSeed = async ({ seed }: { seed: Uint8Array }) => {
   const pvtkey = `0x${toHex(hdkey.privateKey as Uint8Array)}`;
 
   return {
-    hdkey,
+    // hdkey,
     pubkey,
     pvtkey,
     address,

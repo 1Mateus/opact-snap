@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unassigned-import */
+import './src/styles/global.css';
 import type { GatsbyBrowser } from 'gatsby';
 import { StrictMode } from 'react';
 

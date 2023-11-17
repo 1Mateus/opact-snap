@@ -6,3 +6,7 @@ export * from './MetaMask';
 export * from './PoweredBy';
 export * from './SnapLogo';
 export * from './Toggle';
+export * from './WalletWidget';
+export * from './EncryptWidget';
+export * from './DecryptWidget';
+export * from './ProofWidget';

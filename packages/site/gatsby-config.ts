@@ -5,6 +5,7 @@ const config: GatsbyConfig = {
   jsxRuntime: 'automatic',
 
   plugins: [
+    'gatsby-plugin-postcss',
     'gatsby-plugin-svgr',
     'gatsby-plugin-styled-components',
     {

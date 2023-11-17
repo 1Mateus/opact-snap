@@ -47,5 +47,9 @@
   "packageManager": "yarn@3.2.1",
   "engines": {
     "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "through2": "^4.0.2",
+    "tweetnacl-util": "^0.15.1"
   }
 }

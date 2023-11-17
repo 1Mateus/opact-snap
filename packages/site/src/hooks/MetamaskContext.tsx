@@ -6,6 +6,7 @@ import { detectSnaps, getSnap, isFlask } from '../utils';
 
 export type MetamaskState = {
   snapsDetected: boolean;
+  opactWallet: null | object;
   isFlask: boolean;
   installedSnap?: Snap;
   error?: Error;
@@ -14,6 +15,7 @@ export type MetamaskState = {
 const initialState: MetamaskState = {
   snapsDetected: false,
   isFlask: false,
+  opactWallet: null,
 };
 
 type MetamaskDispatch = { type: MetamaskActions; payload: any };
@@ -31,11 +33,18 @@ export enum MetamaskActions {
   SetInstalled = 'SetInstalled',
   SetSnapsDetected = 'SetSnapsDetected',
   SetError = 'SetError',
+  setOpactWallet = 'setOpactWallet',
   SetIsFlask = 'SetIsFlask',
 }
 
 const reducer: Reducer<MetamaskState, MetamaskDispatch> = (state, action) => {
   switch (action.type) {
+    case MetamaskActions.setOpactWallet:
+      return {
+        ...state,
+        opactWallet: action.payload
+      }
+
     case MetamaskActions.SetInstalled:
       return {
         ...state,

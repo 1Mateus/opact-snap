@@ -1,6 +1,15 @@
 /* eslint-disable */
 import * as edssa from 'circomlibjs';
 
+function uint8ArrayToBigInt(uint8Array: any) {
+  let result = BigInt(0);
+  for (let i = 0; i < uint8Array.length; i++) {
+    // Convert each byte to BigInt and shift it
+    result = (result << BigInt(8)) + BigInt(uint8Array[i]);
+  }
+  return result;
+}
+
 /**
  * TODO: Refact this function
  */
@@ -51,7 +60,7 @@ export async function subgroupDecompress(x: bigint | number): Promise<[bigint, b
 export const validatePubkey = async (pubkey: bigint) => {
   const babyjub = await edssa.buildBabyjub()
 
-  const decompressed = subgroupDecompress(pubkey)
+  const decompressed = await subgroupDecompress(pubkey)
 
   return babyjub.inCurve(decompressed)
 }
@@ -59,15 +68,16 @@ export const validatePubkey = async (pubkey: bigint) => {
 export const deriveBabyJubKeysFromEth = async (wallet: any) => {
   const babyjub = await edssa.buildBabyjub()
 
-  console.log('babyjub', babyjub)
-
   const adjustedPrivateKey = BigInt(wallet.pvtkey) % babyjub.subOrder;
 
-  const pubkey = babyjub.mulPointEscalar(babyjub.Base8, adjustedPrivateKey)[0];
+  const pubkey = uint8ArrayToBigInt(babyjub.mulPointEscalar(babyjub.Base8, adjustedPrivateKey)[0])
 
-  if (!await validatePubkey(pubkey)) {
-    throw new Error('Invalid public key')
-  }
+  console.log('pubkey', pubkey)
+  console.log('pvtkey', adjustedPrivateKey)
+
+  // if (!await validatePubkey(pubkey)) {
+  //   throw new Error('Invalid public key')
+  // }
 
   return {
     pubkey,

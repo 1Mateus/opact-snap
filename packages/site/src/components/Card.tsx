@@ -7,6 +7,7 @@ type CardProps = {
     description: ReactNode;
     button?: ReactNode;
   };
+  children?: any;
   disabled?: boolean;
   fullWidth?: boolean;
 };
@@ -35,7 +36,7 @@ const CardWrapper = styled.div<{
   }
 `;
 
-const Title = styled.h2`
+export const Title = styled.h2`
   font-size: ${({ theme }) => theme.fontSizes.large};
   margin: 0;
   ${({ theme }) => theme.mediaQueries.small} {
@@ -55,6 +56,17 @@ export const Card = ({ content, disabled = false, fullWidth }: CardProps) => {
       {title && <Title>{title}</Title>}
       <Description>{description}</Description>
       {button}
+    </CardWrapper>
+  );
+};
+
+export const GCard = ({ content, disabled = false, fullWidth, children }: any) => {
+  return (
+    <CardWrapper
+      className="space-y-4"
+      fullWidth={fullWidth} disabled={disabled}
+    >
+      {children}
     </CardWrapper>
   );
 };

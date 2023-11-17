@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import styled, { useTheme } from 'styled-components';
 
 import { MetamaskActions, MetaMaskContext } from '../hooks';
-import { connectSnap, getThemePreference, getSnap } from '../utils';
+import { connectSnap, getThemePreference, getSnap, getWallet } from '../utils';
 import { HeaderButtons } from './Buttons';
 import { SnapLogo } from './SnapLogo';
 import { Toggle } from './Toggle';
@@ -55,6 +55,17 @@ export const Header = ({
         type: MetamaskActions.SetInstalled,
         payload: installedSnap,
       });
+
+      const wallet = await getWallet();
+
+      console.log('wallet,', wallet)
+
+      if (wallet) {
+        dispatch({
+          type: MetamaskActions.setOpactWallet,
+          payload: wallet,
+        });
+      }
     } catch (error) {
       console.error(error);
       dispatch({ type: MetamaskActions.SetError, payload: error });

@@ -6,6 +6,8 @@ import type { MetaMaskInpageProvider } from '@metamask/providers';
 import { defaultSnapOrigin } from '../config';
 import type { GetSnapsResponse, Snap } from '../types';
 
+export const isLocalSnap = (snapId: string) => snapId.startsWith('local:');
+
 /**
  * Get the installed snaps in MetaMask.
  *
@@ -56,16 +58,49 @@ export const getSnap = async (version?: string): Promise<Snap | undefined> => {
   }
 };
 
-/**
- * Invoke the "hello" method from the example snap.
- */
-export const sendHello = async () => {
+export async function getProver(path: string) {
+  const proverText = await fetch(path);
+
+  const parsedFile = JSON.parse(await proverText.text());
+
+  return parsedFile;
+}
+
+export const getWallet = async () => {
+  const res = await window.ethereum.request({
+    method: 'wallet_invokeSnap',
+    params: {
+      snapId: defaultSnapOrigin,
+      request: {
+        method: 'getWallet',
+      },
+    },
+  });
+
+  return res;
+};
+
+export const createWallet = async () => {
   const res = await window.ethereum.request({
     method: 'wallet_invokeSnap',
     params: {
       snapId: defaultSnapOrigin,
       request: {
         method: 'createWallet',
+      },
+    },
+  });
+
+  return res;
+};
+
+export const createProof = async () => {
+  const res = await window.ethereum.request({
+    method: 'wallet_invokeSnap',
+    params: {
+      snapId: defaultSnapOrigin,
+      request: {
+        method: 'generateProof',
         params: {
           prover: await getProver('/provers/transaction.json'),
         },
@@ -73,19 +108,53 @@ export const sendHello = async () => {
     },
   });
 
-  console.log('fucking res', res);
+  return res;
+};
+
+export const encrypt = async (data: any) => {
+  const res = await window.ethereum.request({
+    method: 'wallet_invokeSnap',
+    params: {
+      snapId: defaultSnapOrigin,
+      request: {
+        method: 'encryptData',
+        params: {
+          data,
+        },
+      },
+    },
+  });
 
   return res;
 };
 
-export async function getProver(path: string) {
-  const proverText = await fetch(path);
+export const decrypt = async (data: any) => {
+  const res = await window.ethereum.request({
+    method: 'wallet_invokeSnap',
+    params: {
+      snapId: defaultSnapOrigin,
+      request: {
+        method: 'decryptData',
+        params: {
+          data,
+        },
+      },
+    },
+  });
 
-  const parsedFile = JSON.parse(await proverText.text());
+  return res;
+};
 
-  console.log('parsedFile', parsedFile)
+export const sendHello = async () => {
+  const res = await window.ethereum.request({
+    method: 'wallet_invokeSnap',
+    params: {
+      snapId: defaultSnapOrigin,
+      request: {
+        method: 'createWallet',
+      },
+    },
+  });
 
-  return parsedFile;
-}
-
-export const isLocalSnap = (snapId: string) => snapId.startsWith('local:');
+  return res;
+};

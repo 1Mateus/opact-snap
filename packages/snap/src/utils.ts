@@ -283,3 +283,49 @@ export const separateHex = (combined: string) => {
 
   return { encryptionPubkey, babyjubPubkey };
 };
+
+export const isPrefixed0x = (str: string): boolean => str.startsWith('0x');
+
+export const strip0x = (str: string): string =>
+  isPrefixed0x(str) ? str.slice(2) : str;
+
+export const parseUtxoString = (utxo: string) => {
+  const { id, hash, token, amount, pubkey, address, blinding } =
+    JSON.parse(utxo);
+
+  return {
+    id,
+    address,
+    hash: BigInt(hash),
+    token: BigInt(token),
+    amount: BigInt(amount),
+    pubkey: BigInt(pubkey),
+    blinding: BigInt(blinding),
+  };
+};
+
+export const hexToUint8Array = (hexString: any) => {
+  if (hexString.length % 2 !== 0) {
+    throw new Error('String hexadecimal inválida');
+  }
+
+  const bytes = new Uint8Array(hexString.length / 2);
+
+  for (let i = 0; i < bytes.length; i++) {
+    bytes[i] = parseInt(hexString.substr(i * 2, 2), 16);
+  }
+
+  return bytes;
+}
+
+export const stringifyUtxo = (utxo: any) => {
+  let value = utxo
+
+  if (typeof utxo !== 'string') {
+    value = JSON.stringify(utxo, (_, value) => {
+      return typeof value === 'bigint' ? value.toString() : value;
+    })
+  }
+
+  return value
+}
