@@ -49,6 +49,7 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
+    "fixed-merkle-tree": "^0.7.3",
     "through2": "^4.0.2",
     "tweetnacl-util": "^0.15.1"
   }

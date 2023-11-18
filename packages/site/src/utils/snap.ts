@@ -158,3 +158,21 @@ export const sendHello = async () => {
 
   return res;
 };
+
+export const generateDepositProof = async (params: any) => {
+  const res = await window.ethereum.request({
+    method: 'wallet_invokeSnap',
+    params: {
+      snapId: defaultSnapOrigin,
+      request: {
+        params: {
+          ...params,
+          prover: await getProver('/provers/transaction.json'),
+        },
+        method: 'generateDepositProof',
+      },
+    },
+  });
+
+  return res;
+};

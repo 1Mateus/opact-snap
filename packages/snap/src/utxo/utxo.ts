@@ -1,19 +1,33 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable import/no-extraneous-dependencies */
-import { poseidon } from 'circomlibjs';
+import { buildPoseidon } from 'circomlibjs';
 import { getRandomBytesSync } from 'ethereum-cryptography/random';
 import { toHex } from 'ethereum-cryptography/utils';
 
 import { TXO } from './types/utxo.type';
 
-export const ownerCommit = ({ pubkey, blinding }: any) =>
-  poseidon([pubkey, blinding]);
+export const ownerCommit = async ({ pubkey, blinding }: any) => {
+  const poseidon = await buildPoseidon();
 
-export const outUtxoInputs = ({ token, amount, pubkey, blinding }: any) =>
-  poseidon([token, amount, ownerCommit({ pubkey, blinding })]);
+  return poseidon.F.toObject(poseidon([pubkey, blinding]));
+};
 
-export const utxoHash = ({ token, amount, pubkey, blinding }: TXO) =>
-  outUtxoInputs({ token, amount, pubkey, blinding });
+// TODO: FIX IT
+export const outUtxoInputs = async ({
+  token,
+  amount,
+  pubkey,
+  blinding,
+}: any) => {
+  const poseidon = await buildPoseidon();
+
+  return poseidon.F.toObject(
+    poseidon([token, amount, await ownerCommit({ pubkey, blinding })]),
+  );
+};
+
+export const utxoHash = async ({ token, amount, pubkey, blinding }: TXO) =>
+  await outUtxoInputs({ token, amount, pubkey, blinding });
 
 export const inUtxoInputs = ({ token, amount, blinding }: any) => [
   token,
@@ -21,22 +35,32 @@ export const inUtxoInputs = ({ token, amount, blinding }: any) => [
   blinding,
 ];
 
-export const getNullifier = ({ utxo, secret }: any) =>
-  poseidon([secret, utxoHash(utxo)]);
+export const getNullifier = async ({ utxo, secret }: any) => {
+  const poseidon = await buildPoseidon();
 
-export const objUtxoInputs = ({ token, amount, pubkey, blinding }: any) => ({
+  return poseidon.F.toObject(poseidon([secret, utxoHash(utxo)]));
+};
+
+export const objUtxoInputs = async ({
   token,
   amount,
-  owner_commit: ownerCommit({ pubkey, blinding }),
-});
+  pubkey,
+  blinding,
+}: any) => {
+  return {
+    token,
+    amount,
+    owner_commit: await ownerCommit({ pubkey, blinding }),
+  };
+};
 
-export const outUtxoInputsNoHashed = ({
+export const outUtxoInputsNoHashed = async ({
   blinding,
   token,
   amount,
   pubkey,
 }: any) => {
-  const owner = ownerCommit({
+  const owner = await ownerCommit({
     blinding,
     pubkey,
   });
@@ -44,13 +68,13 @@ export const outUtxoInputsNoHashed = ({
   return [BigInt(token), BigInt(amount), BigInt(owner)];
 };
 
-export const getUtxo = ({
+export const getUtxo = async ({
   token,
   pubkey,
   id = '0',
   amount = 0n,
   address = 'coin',
-}: any): any => {
+}: any): Promise<any> => {
   const blinding = BigInt(`0x${toHex(getRandomBytesSync(32))}`);
 
   const core = {
@@ -60,7 +84,7 @@ export const getUtxo = ({
     pubkey: BigInt(pubkey),
   };
 
-  const hash = utxoHash(core as any);
+  const hash = await utxoHash(core as any);
 
   return {
     id,

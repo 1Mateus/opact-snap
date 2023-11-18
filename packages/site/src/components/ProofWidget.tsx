@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 
 import { MetamaskActions, MetaMaskContext } from '../hooks';
-import { createProof } from '../utils';
+import { createProof, generateDepositProof } from '../utils';
 import { GButton } from './Buttons';
 import { GCard, Title } from './Card';
 
@@ -12,18 +12,21 @@ export const ProofWidget = () => {
 
   const handle = async () => {
     setLoading(true);
-    setValue('')
+    setValue('');
 
     try {
-      // const wallet = await createWallet();
       const res = (await createProof()) as any;
 
       setValue(res);
 
-      dispatch({
-        type: MetamaskActions.SetInfo,
-        payload: `Proof generation successful.`,
-      });
+      // const res = await generateDepositProof({ amount: 10 });
+
+      console.log('fuckingres', res);
+
+      // dispatch({
+      //   type: MetamaskActions.SetInfo,
+      //   payload: `Proof generation successful.`,
+      // });
     } catch (error) {
       console.error(error);
       dispatch({ type: MetamaskActions.SetError, payload: error });

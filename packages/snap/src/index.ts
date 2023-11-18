@@ -1,9 +1,12 @@
 /* eslint-disable id-denylist */
 import type { OnRpcRequestHandler } from '@metamask/snaps-types';
 
+import { getDepositSoluctionBatch } from './batch';
 import { decrypt, encrypt } from './encryption';
 import { getRandomWallet } from './keys';
+import { computeInputs } from './proof';
 import { generateZKProof } from './proofGenerator';
+import { proofInputMock } from './utils';
 // import { separateHex } from './utils';
 
 export const onRpcRequest: OnRpcRequestHandler = async ({
@@ -93,51 +96,76 @@ export const onRpcRequest: OnRpcRequestHandler = async ({
           throw new Error('You need to create a Wallet.');
         }
 
-        // const baseUtxos = [0n, 30n, 40n, 50n, 10n, 20n, 10n, 20n, 0n];
-
-        // const token = 832719810210204902983213847411017819246076070166n;
-
-        // const { babyjubPubkey: pubkey } = separateHex(
-        //   persistedData?.wallet.address,
-        // );
-
-        // const utxos = [
-        //   ...baseUtxos.map((amount) => getUtxo({ amount, token, pubkey })),
-        // ];
-
-        // const commitments = utxos.map((utxo) => ({
-        //   value: utxo.hash.toString(),
-        // }));
-
-        // const treeBalance = {
-        //   token,
-        //   utxos,
-        //   balance: 150n,
-        // };
-
-        // const batch = await getDepositSoluctionBatch({
-        //   treeBalance,
-        //   totalRequired: 15n,
-        //   senderWallet: wallet,
-        //   selectedToken: {
-        //     id: '',
-        //     refName: {
-        //       name: 'coin',
-        //       namespace: ''
-        //     },
-        //     refSpec: {
-        //       name: 'fungible-v2',
-        //       namespace: ''
-        //     }
-        //   }
-        // })
-
-        const res = await generateZKProof(request.params);
+        const res = await generateZKProof(request.params, proofInputMock);
 
         return res;
       } catch (error: any) {
         return 'Error to generate ZK Proof';
       }
+    }
+
+    case 'generateDepositProof': {
+      const { amount } = request.params;
+
+      if (!persistedData?.wallet) {
+        throw new Error('You need to create a Wallet.');
+      }
+
+      const wallet = persistedData?.wallet;
+
+      const batch = await getDepositSoluctionBatch({
+        senderWallet: wallet,
+        totalRequired: amount,
+        selectedToken: 'erc2020',
+      });
+
+      const { inputs } = await computeInputs({
+        batch,
+        wallet,
+      });
+
+      console.log('computedInputs', inputs);
+
+      const res = await generateZKProof(request.params, inputs);
+
+      return res;
+    }
+
+    case 'getWithdrawSolutionBatch': {
+      const treeBalance = request.params;
+
+      if (!persistedData?.wallet) {
+        throw new Error('You need to create a Wallet.');
+      }
+
+      const wallet = persistedData?.wallet;
+
+      const batch = await getDepositSoluctionBatch({
+        treeBalance,
+        totalRequired: 15n,
+        senderWallet: wallet,
+        selectedToken: {
+          id: '',
+          refName: {
+            name: 'coin',
+            namespace: '',
+          },
+          refSpec: {
+            name: 'fungible-v2',
+            namespace: '',
+          },
+        },
+      });
+
+      return batch;
+    }
+
+    case 'sendDeposit': {
+      return;
+    }
+
+    case 'sendWithdraw': {
+      return;
     }
 
     default:

@@ -34,7 +34,6 @@
     "circomlibjs": "hsg88/circomlibjs#ffjavascrip.0.1.0",
     "ethereum-cryptography": "^2.1.2",
     "js-base64": "^3.7.5",
-    "opact-sdk": "^1.0.88",
     "snarkjs": "https://github.com/Galactica-corp/snarkjs-ses.git#v0.5-snap",
     "tweetnacl": "^1.0.3"
   },

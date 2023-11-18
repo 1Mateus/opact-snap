@@ -1,6 +1,6 @@
-export type mp_sibling = string[]
+export type mp_sibling = string[];
 
-export type mp_path = number
+export type mp_path = number;
 
 export enum TokenType {
   ERC20 = 0,
@@ -29,17 +29,17 @@ export type TokenSpec = {
   refSpec: {
     name: string;
     namespace: string;
-  }
-}
+  };
+};
 
 export type TXO = {
   token: string;
   amount: bigint;
   pubkey: string;
   blinding: string;
-  mp_sibling: string,
-  mp_path: string,
-}
+  mp_sibling: string;
+  mp_path: string;
+};
 
 export type EncryptedTXO = {
   txo: TXO;
@@ -51,14 +51,14 @@ export type EncryptedTXO = {
   position: string;
   receiver: string;
   spec: TokenSpec;
-}
+};
 
-export interface ProofInputInterface {
+export type ProofInputInterface = {
   // Secret key of user
-  secret: string
+  secret: string;
 
   // Address of token to be updated to withdraw or deposit
-  secret_token: string
+  secret_token: string;
 
   // The Merkletree root
   root: string;
@@ -73,26 +73,26 @@ export interface ProofInputInterface {
   utxo_out_hash: string[];
 
   // TODO: Token address
-  token: string
+  token: string;
 
   // TODO: Delta value: if negative is a withdraw, if postive is deposit
-  delta: bigint
+  delta: bigint;
 
   // TODO: The message hash (Note version to wallets?)
-  message_hash: string
+  message_hash: string;
 
   // Array of mp sibling of each UTXO
-  mp_sibling: mp_sibling[]
+  mp_sibling: mp_sibling[];
 
   // Array of mp sibling of each UTXO
-  mp_path: mp_path[]
+  mp_path: mp_path[];
 
   // Array of proof of each UTXO in subtree
-  subtree_mp_sibling: mp_sibling[]
+  subtree_mp_sibling: mp_sibling[];
 
   // Array of UTXOs in
-  utxo_in_data: any[]
+  utxo_in_data: any[];
 
   // Array of UTXO out
-  utxo_out_data: any[]
-}
+  utxo_out_data: any[];
+};
