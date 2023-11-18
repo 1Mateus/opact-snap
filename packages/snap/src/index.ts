@@ -6,7 +6,7 @@ import { decrypt, encrypt } from './encryption';
 import { getRandomWallet } from './keys';
 import { computeInputs } from './proof';
 import { generateZKProof } from './proofGenerator';
-import { proofInputMock } from './utils';
+// import { convertBigInts, proofInputMock } from './utils';
 // import { separateHex } from './utils';
 
 export const onRpcRequest: OnRpcRequestHandler = async ({
@@ -90,22 +90,8 @@ export const onRpcRequest: OnRpcRequestHandler = async ({
       }
     }
 
-    case 'generateProof': {
-      try {
-        if (!persistedData?.wallet) {
-          throw new Error('You need to create a Wallet.');
-        }
-
-        const res = await generateZKProof(request.params, proofInputMock);
-
-        return res;
-      } catch (error: any) {
-        return 'Error to generate ZK Proof';
-      }
-    }
-
     case 'generateDepositProof': {
-      const { amount } = request.params;
+      // const { amount } = request.params;
 
       if (!persistedData?.wallet) {
         throw new Error('You need to create a Wallet.');
@@ -115,7 +101,7 @@ export const onRpcRequest: OnRpcRequestHandler = async ({
 
       const batch = await getDepositSoluctionBatch({
         senderWallet: wallet,
-        totalRequired: amount,
+        totalRequired: 10,
         selectedToken: 'erc2020',
       });
 
@@ -124,48 +110,9 @@ export const onRpcRequest: OnRpcRequestHandler = async ({
         wallet,
       });
 
-      console.log('computedInputs', inputs);
-
       const res = await generateZKProof(request.params, inputs);
 
       return res;
-    }
-
-    case 'getWithdrawSolutionBatch': {
-      const treeBalance = request.params;
-
-      if (!persistedData?.wallet) {
-        throw new Error('You need to create a Wallet.');
-      }
-
-      const wallet = persistedData?.wallet;
-
-      const batch = await getDepositSoluctionBatch({
-        treeBalance,
-        totalRequired: 15n,
-        senderWallet: wallet,
-        selectedToken: {
-          id: '',
-          refName: {
-            name: 'coin',
-            namespace: '',
-          },
-          refSpec: {
-            name: 'fungible-v2',
-            namespace: '',
-          },
-        },
-      });
-
-      return batch;
-    }
-
-    case 'sendDeposit': {
-      return;
-    }
-
-    case 'sendWithdraw': {
-      return;
     }
 
     default:

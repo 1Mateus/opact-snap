@@ -38,7 +38,7 @@ export const inUtxoInputs = ({ token, amount, blinding }: any) => [
 export const getNullifier = async ({ utxo, secret }: any) => {
   const poseidon = await buildPoseidon();
 
-  return poseidon.F.toObject(poseidon([secret, utxoHash(utxo)]));
+  return poseidon.F.toObject(poseidon([secret, await utxoHash(utxo)]));
 };
 
 export const objUtxoInputs = async ({

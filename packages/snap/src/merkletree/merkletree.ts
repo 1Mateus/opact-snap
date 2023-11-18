@@ -16,8 +16,6 @@ const calculateMerkleDefault = async (poseidon) => {
     })()
   }
 
-  console.log('merkleDefaults[0].toString()', merkleDefaults[0].toString())
-
   return {
     merkleDefaults,
   }
@@ -28,6 +26,7 @@ export class MerkleTree {
   public merkleDefaults
 
   constructor(height: any, merkleDefaults: any, poseidon: any) {
+    console.log('poseidon', poseidon)
     assert(height <= maxheight, `height should be less or equal ${maxheight}`);
     this.merkleDefaults = merkleDefaults
     this.height = height;

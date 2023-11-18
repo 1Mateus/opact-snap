@@ -16,24 +16,18 @@ export const getDepositSoluctionBatch = async ({
   const utxosIn = [
     await getUtxo({
       token,
-      id: 0,
       amount: 0n,
       pubkey: derivedKeys.pubkey,
-      address: selectedToken.refName,
     }),
     await getUtxo({
       token,
-      id: 0,
       amount: 0n,
       pubkey: derivedKeys.pubkey,
-      address: selectedToken.refName,
     }),
     await getUtxo({
       token,
-      id: 0,
       amount: 0n,
       pubkey: derivedKeys.pubkey,
-      address: selectedToken.refName,
     }),
   ];
 
@@ -44,13 +38,13 @@ export const getDepositSoluctionBatch = async ({
     },
     totalRequired,
     selectedToken,
-    senderPubkey: senderWallet.pubkey,
+    senderPubkey: derivedKeys.pubkey,
     isDeposit: true,
   });
 
   const delta = await getDelta({ utxosOut, utxosIn });
 
-  const { roots, newIns } = await computeTreeValues(utxosIn, false);
+  const { roots, newIns } = await computeTreeValues(utxosIn, true);
 
   return {
     delta,

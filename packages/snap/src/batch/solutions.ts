@@ -49,7 +49,6 @@ export const getSolutionOuts = async ({
 
   return [
     await getUtxo({
-      id: 0,
       amount,
       pubkey: senderPubkey,
       token: treeBalance.token,
@@ -57,14 +56,12 @@ export const getSolutionOuts = async ({
     }),
     receiverPubkey
       ? await getUtxo({
-          id: 0,
           amount: totalRequired,
           pubkey: receiverPubkey,
           address: selectedToken,
-          token: treeBalance.token,
+          token: selectedToken,
         })
       : await getUtxo({
-          id: 0,
           pubkey: senderPubkey,
           address: selectedToken,
           token: treeBalance.token,

@@ -11,16 +11,10 @@
 import { buildPoseidon } from 'circomlibjs';
 
 import { deriveBabyJubKeysFromEth } from '../keys';
-import { getNullifier, inUtxoInputs, outUtxoInputsNoHashed } from '../utxo';
-// import { getPublicArgs } from './public-values'
-// import { artifactStore } from '../util/artifact-store'
-// import { MerkleTree, MerkleTreeService } from '../merkletree'
+import { inUtxoInputs, outUtxoInputsNoHashed } from '../utxo';
 
-// const PROOF_LENGTH = 32
-
-// const EXPECTED_VALUE = 11954255677048767585730959529592939615262310191150853775895456173962480955685n
-export const computeInputs = async ({ batch, wallet, message }: any) => {
-  const poseidon = await buildPoseidon()
+export const computeInputs = async ({ batch, wallet }: any) => {
+  const poseidon = await buildPoseidon();
 
   const { token, roots, delta, utxosIn, utxosOut } = batch;
 
@@ -34,11 +28,8 @@ export const computeInputs = async ({ batch, wallet, message }: any) => {
 
   const mp_path = utxosIn.map((u: any) => u.mp_path);
 
-  const nullifier = utxosIn.map(async (u: any) => {
-    return getNullifier({
-      utxo: u,
-      secret,
-    });
+  const nullifier = utxosIn.map((u: any) => {
+    return poseidon.F.toObject(poseidon([secret, u.hash]));
   });
 
   const mp_sibling = utxosIn.map((u: any) => u.mp_sibling);
@@ -49,7 +40,7 @@ export const computeInputs = async ({ batch, wallet, message }: any) => {
 
   const utxo_in_data = utxosIn.map((utxo: any) => inUtxoInputs(utxo).slice(1));
 
-  const utxo_out_data = Promise.all(
+  const utxo_out_data = await Promise.all(
     batch.utxosOut.map(async (txo: any) =>
       (await outUtxoInputsNoHashed(txo)).slice(1),
     ),
@@ -70,33 +61,7 @@ export const computeInputs = async ({ batch, wallet, message }: any) => {
       utxo_out_hash,
       utxo_out_data,
       subtree_mp_sibling,
-      message_hash: message || poseidon([BigInt(1)]),
+      message_hash: poseidon.F.toObject(poseidon([BigInt(1)])),
     },
   };
 };
-
-// export const computeProof = async ({
-//   batch,
-//   wallet,
-//   message,
-// }: any) => {
-
-//   const { inputs } = await computeInputs({
-//     batch,
-//     wallet,
-//     message,
-//   })
-
-//   console.log('fucking inputs', inputs)
-
-//   const {
-//     proof,
-//     publicSignals
-//   } = await groth16.fullProve(
-//     inputs,
-//     './src/utxo/tests/transaction.wasm',
-//     './src/utxo/tests/transaction_0001.zkey',
-//   )
-
-//   return getPublicArgs(proof, publicSignals)
-// }

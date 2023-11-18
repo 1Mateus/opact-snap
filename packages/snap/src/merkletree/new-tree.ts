@@ -31,15 +31,7 @@ export class MerkleTreeService {
   ): Promise<any> {
     const { hash } = await new PoseidonClass().load();
 
-    let branches = [];
-
-    if (!onlyLocal) {
-      try {
-        branches = await this.getBranches();
-      } catch (e) {
-        console.warn(e)
-      }
-    }
+    const branches: any[] = [];
 
     let items: any[] = [...localItems];
 

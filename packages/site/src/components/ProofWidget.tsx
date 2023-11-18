@@ -15,11 +15,11 @@ export const ProofWidget = () => {
     setValue('');
 
     try {
-      const res = (await createProof()) as any;
+      // const res = (await createProof()) as any;
 
-      setValue(res);
+      // setValue(res);
 
-      // const res = await generateDepositProof({ amount: 10 });
+      const res = await generateDepositProof({ amount: 10 });
 
       console.log('fuckingres', res);
 
