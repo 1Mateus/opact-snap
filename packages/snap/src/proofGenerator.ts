@@ -1,21 +1,26 @@
+/* eslint-disable import/no-nodejs-modules */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable jsdoc/require-jsdoc */
 /* eslint-disable jsdoc/require-description */
 
 // SPDX-License-Identifier: BUSL-1.1
 import { text, heading, divider } from '@metamask/snaps-ui';
-// import { Buffer } from 'buffer';
+import { Buffer } from 'buffer';
 import { buildBn128, buildBls12381 } from 'ffjavascript';
 import { groth16 } from 'snarkjs';
 
-import { proofInputMock } from './utils';
+// import { proofInputMock } from './utils';
 
-export const generateZKProof = async (params: any): Promise<any> => {
+export const generateZKProof = async (
+  params: any,
+  inputs: any,
+): Promise<any> => {
+
   const processedParams = await preprocessInput(params);
 
   try {
     const { proof, publicSignals } = await groth16.fullProveMemory(
-      proofInputMock,
+      inputs,
       processedParams.prover.wasm,
       processedParams.prover.zkeyHeader,
       processedParams.prover.zkeySections,

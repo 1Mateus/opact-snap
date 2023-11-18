@@ -72,9 +72,6 @@ export const deriveBabyJubKeysFromEth = async (wallet: any) => {
 
   const pubkey = uint8ArrayToBigInt(babyjub.mulPointEscalar(babyjub.Base8, adjustedPrivateKey)[0])
 
-  console.log('pubkey', pubkey)
-  console.log('pvtkey', adjustedPrivateKey)
-
   // if (!await validatePubkey(pubkey)) {
   //   throw new Error('Invalid public key')
   // }
