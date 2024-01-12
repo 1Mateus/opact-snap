@@ -50,7 +50,7 @@
     "@metamask/snaps-cli": "^0.32.2",
     "@metamask/snaps-types": "^0.32.2",
     "@metamask/snaps-ui": "^0.32.2",
-    "@metamask/utils": "^5.0.1",
+    "@metamask/utils": "^8.3.0",
     "@types/chai": "^4.3.4",
     "@types/chai-as-promised": "^7.1.5",
     "@types/mocha": "^10.0.1",
